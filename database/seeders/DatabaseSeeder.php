@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,6 +21,7 @@ class DatabaseSeeder extends Seeder
             CategoriesSeeder::class,
             MediaSeeder::class,
             AdsSeeder::class,
+            RolesSeeder::class,
 
         ]);
     }

@@ -10,6 +10,7 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Models\Permission;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -45,14 +46,6 @@ class User extends Authenticatable
         'two_factor_secret',
     ];
 
-    public function test()
-    {
-        $role = Role::create(['name' => 'writer']);
-        $permission = Permission::create(['name' => 'edit articles']);
-        $role->givePermissionTo($permission);
-        $permission->assignRole($role);
-    }
-
     /**
      * The attributes that should be cast to native types.
      *
@@ -70,4 +63,15 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * Get all of the ads for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function ads(): HasMany
+    {
+        return $this->hasMany(Ad::class);
+    }
+
 }

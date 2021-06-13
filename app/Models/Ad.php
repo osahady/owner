@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Ad extends Model
@@ -11,32 +12,32 @@ class Ad extends Model
     use HasFactory;
 
     /**
-     * Get the user associated with the Ad
+     * Get the user that owns the Ad
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user(): HasOne
+    public function user(): BelongsTo
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 
     /**
-     * Get the location associated with the Ad
+     * Get the location that owns the Ad
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function location(): HasOne
+    public function location(): BelongsTo
     {
-        return $this->hasOne(Location::class);
+        return $this->belongsTo(Location::class);
     }
 
     /**
-     * Get the category associated with the Ad
+     * Get the category that owns the Ad
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function category(): HasOne
+    public function category(): BelongsTo
     {
-        return $this->hasOne(Category::class);
+        return $this->belongsTo(Category::class);
     }
 }

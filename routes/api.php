@@ -30,4 +30,10 @@ Route::prefix('v1')->name('api.v1')->group(function ()
     Route::get('/cats/{cat}/locs/{loc}/ads',  [CategoryController::class, 'catLocAds']);
     Route::get('/locs/{loc}/ads',  [LocationController::class, 'locAds']);
     Route::get('/cats',  [CategoryController::class, 'cats']);
+    Route::get('/locs',  [LocationController::class, 'locs']);
+
+    //protected routes
+    Route::middleware(['auth:sanctum'])->group(function () {
+        Route::post('/ads', [AdController::class, 'store']);
+    });
 });

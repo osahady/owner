@@ -6,16 +6,28 @@ use App\Models\Ad;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\AdResource;
 
 class AdController extends Controller
 {
     public function index()
     {
-        return Ad::all();
+        return AdResource::collection(
+            Ad::all()
+        );
     }
 
     public function catAds(Category $cat)
     {
-        return $cat->ads()->get();
+        return AdResource::collection(
+            $cat->ads()
+            ->with(['user', 'location', 'category'])
+            ->get()
+        );
+    }
+
+    public function store()
+    {
+        
     }
 }

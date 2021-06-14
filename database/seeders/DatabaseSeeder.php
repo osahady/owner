@@ -19,8 +19,8 @@ class DatabaseSeeder extends Seeder
             UsersSeeder::class,
             LocationsSeeder::class,
             CategoriesSeeder::class,
-            MediaSeeder::class,
             AdsSeeder::class,
+            MediaSeeder::class,
             RolesSeeder::class,
 
         ]);

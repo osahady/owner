@@ -19,7 +19,7 @@ class CreateAdsTable extends Migration
             $table->unsignedBigInteger('location_id');
             $table->unsignedBigInteger('category_id');
             $table->string('title');
-            $table->text('body');
+            $table->text('body')->nullable();
             $table->double('price');
             $table->timestamps();
 

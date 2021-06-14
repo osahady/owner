@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\AdController;
 use App\Http\Controllers\Api\V1\CategoryController;
 use App\Http\Controllers\Api\V1\LocationController;
+use App\Http\Controllers\Api\V1\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +22,28 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('v1')->name('api.v1')->group(function ()
-{
+Route::prefix('v1')->name('api.v1')->group(function (){
+    /*
+    |--------------------------------------------------------------------------
+    | Registering User - CRUD Operations
+    |--------------------------------------------------------------------------
+    |
+    */
     //public routes
+    Route::post('/register', [UserController::class, 'register']);
+    Route::post('/login', [UserController::class, 'login']);
+
+    //protected routes
+    Route::middleware(['auth:sanctum'])->group(function () {
+        Route::post('users/{id}', [UserController::class, 'logout']);
+    });
+    /*
+    |--------------------------------------------------------------------------
+    | Advertisements - CRUD Operations
+    |--------------------------------------------------------------------------
+    |
+    */
+        //public routes
     Route::get('/ads',  [AdController::class, 'index']);
     Route::get('/cats/{cat}/ads',  [AdController::class, 'catAds']);
     Route::get('/cats/{cat}/users/{user}/ads',  [CategoryController::class, 'hisAds']);
@@ -32,8 +52,16 @@ Route::prefix('v1')->name('api.v1')->group(function ()
     Route::get('/cats',  [CategoryController::class, 'cats']);
     Route::get('/locs',  [LocationController::class, 'locs']);
 
+        
     //protected routes
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/ads', [AdController::class, 'store']);
+     
     });
-});
+
+
+
+
+
+});//end of prefix v1
+

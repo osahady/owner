@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Ad;
 use App\Models\Media;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -21,7 +22,9 @@ class MediaFactory extends Factory
      */
     public function definition()
     {
+        $adIds = Ad::pluck('id')->toArray();
         return [
+            'ad_id'=> $this->faker->randomElement($adIds),
             'path' => $this->faker->imageUrl(),
             'type' => $this->faker->randomElement(['صورة', 'صوت', 'فيديو']),
             

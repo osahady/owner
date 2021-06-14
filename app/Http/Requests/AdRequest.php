@@ -13,7 +13,7 @@ class AdRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class AdRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'required|string|max:255',
+            'body' => 'string|nullable',
+            'price' => 'required|numeric',
+            'category_id' => 'required',
+            'location_id' => 'required',
         ];
     }
 }

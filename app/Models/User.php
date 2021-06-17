@@ -2,7 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\AuthState\AuthState;
+use App\Models\BusinessState\BusinessState;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\ModelStates\HasStates;
 use Spatie\Permission\Models\Role;
 use Laravel\Jetstream\HasProfilePhoto;
 use Spatie\Permission\Traits\HasRoles;
@@ -22,6 +25,7 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
     use HasRoles;
+    use HasStates;
 
     /**
      * The attributes that are mass assignable.
@@ -53,6 +57,8 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'auth_state' => AuthState::class,
+        'business_state' => BusinessState::class,
     ];
 
     /**
@@ -73,5 +79,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(Ad::class);
     }
-
 }

@@ -38,7 +38,6 @@ class AdController extends Controller
             'user_id' => $userId,
             'category_id' => $fields['category_id'],
             'location_id' => $fields['location_id'],
-            
         ]);
         return [
             'message' => 'created successfully'

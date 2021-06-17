@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\AdController;
 use App\Http\Controllers\Api\V1\CategoryController;
 use App\Http\Controllers\Api\V1\LocationController;
+use App\Http\Controllers\Api\V1\MediaController;
 use App\Http\Controllers\Api\V1\UserController;
 
 /*
@@ -56,6 +57,7 @@ Route::prefix('v1')->name('api.v1')->group(function (){
     //protected routes
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/ads', [AdController::class, 'store']);
+        Route::post('/upload/ads/{ad}', [MediaController::class, 'upload']);
      
     });
 

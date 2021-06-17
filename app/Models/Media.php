@@ -18,7 +18,9 @@ class Media extends Model
     protected $fillable = [
         'ad_id',
         'path',
-        'type',
+        'url',
+        'mediable_id',
+        'mediable_type'
     ];
 
     /**
@@ -29,5 +31,13 @@ class Media extends Model
     public function ad(): BelongsTo
     {
         return $this->belongsTo(Ad::class);
+    }
+
+    /**
+     * Get the parent mediable model (image, audio or video).
+     */
+    public function mediable()
+    {
+        return $this->morphTo();
     }
 }

@@ -24,10 +24,8 @@ class MediaFactory extends Factory
     {
         $adIds = Ad::pluck('id')->toArray();
         return [
-            'ad_id'=> $this->faker->randomElement($adIds),
-            'path' => $this->faker->imageUrl(),
-            'type' => $this->faker->randomElement(['صورة', 'صوت', 'فيديو']),
-            
+            'ad_id' => $this->faker->randomElement($adIds),
+            'path' => 'path/to/media',
         ];
     }
 }

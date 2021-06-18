@@ -32,10 +32,12 @@ class AdFactory extends Factory
             'title' => $this->faker->word(),
             'body' => $this->faker->sentence(),
             'price' => $this->faker->numberBetween(10, 1000),
-            'user_id'=> $this->faker->randomElement($users),
-            'location_id'=> $this->faker->randomElement($locations),
-            'category_id'=> $this->faker->randomElement($categories),
-            
+            'user_id' => $this->faker->randomElement($users),
+            'location_id' => $this->faker->randomElement($locations),
+            'category_id' => $this->faker->randomElement($categories),
+            'created_at' => $this->faker->dateTimeBetween('-2 months'),
+
+
         ];
     }
 }

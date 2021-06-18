@@ -21,8 +21,17 @@ class CategoryFactory extends Factory
      */
     public function definition()
     {
+        $cats = [
+            'عقارات',
+            'دروس خصوصي',
+            'أجهزة كهربائية',
+            'أدوات منزلية',
+            'صيدليات',
+        ];
         return [
-            'name' => $this->faker->unique()->randomElement(['عقارات', 'دروس خصوصي', 'أجهزة كهربائية', 'أدوات منزلية'])
+            'name' => $this->faker->unique()->randomElement($cats),
+            'created_at' => $this->faker->dateTimeBetween('-3 months'),
+
         ];
     }
 }

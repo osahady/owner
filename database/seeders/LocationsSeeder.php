@@ -14,6 +14,21 @@ class LocationsSeeder extends Seeder
      */
     public function run()
     {
-        Location::factory(4)->create();
+        // Location::factory(4)->create();
+        Location::create([
+            'name' => 'عفرين',
+        ]);
+        Location::create([
+            'name' => 'أعزاز',
+        ]);
+        Location::create([
+            'name' => 'الباب',
+        ]);
+        Location::create([
+            'name' => 'سرمدا',
+        ]);
+        Location::create([
+            'name' => 'الدانا',
+        ]);
     }
 }

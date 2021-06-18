@@ -22,20 +22,19 @@ class AdController extends Controller
     {
         return AdResource::collection(
             $cat->ads()
-            ->with(['user', 'location', 'category'])
-            ->get()
+                ->with(['user', 'location', 'category'])
+                ->get()
         );
     }
 
     public function store(AdRequest $request)
     {
         $fields = $request->validated();
-        $userId = $request->user()->id;
-        Ad::create([
+        $user = $request->user();
+        $user->ads()->create([
             'title' => $fields['title'],
             'body' => $fields['body'],
             'price' => $fields['price'],
-            'user_id' => $userId,
             'category_id' => $fields['category_id'],
             'location_id' => $fields['location_id'],
         ]);

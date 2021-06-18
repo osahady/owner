@@ -21,8 +21,15 @@ class LocationFactory extends Factory
      */
     public function definition()
     {
+        $cities = [
+            'الدانا',
+            'أعزاز',
+            'الباب',
+            'عفرين',
+        ];
         return [
-            'name' => $this->faker->unique()->randomElement(['الدانا', 'أعزاز', 'الباب', 'عفرين']),
+            'name' => $this->faker->unique()->randomElement($cities),
+            'created_at' => $this->faker->dateTimeBetween('-3 months'),
         ];
     }
 }

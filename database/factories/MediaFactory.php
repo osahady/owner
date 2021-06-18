@@ -22,7 +22,9 @@ class MediaFactory extends Factory
      */
     public function definition()
     {
-        $adIds = Ad::pluck('id')->toArray();
+        $adIds = Ad::pluck('id')->toArray(); // 'created_at' => 'id'
+
+
         return [
             'ad_id' => $this->faker->randomElement($adIds),
             'path' => 'path/to/media',

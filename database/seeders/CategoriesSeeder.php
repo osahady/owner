@@ -14,6 +14,11 @@ class CategoriesSeeder extends Seeder
      */
     public function run()
     {
-        Category::factory(4)->create();
+        // Category::factory(4)->create();
+        Category::create(['name' => 'عقارات']);
+        Category::create(['name' => 'سيارات']);
+        Category::create(['name' => 'حواسيب وجوالات']);
+        Category::create(['name' => 'أدوات منزلية']);
+        Category::create(['name' => 'دروس خصوصي']);
     }
 }

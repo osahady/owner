@@ -17,6 +17,7 @@ class UsersSeeder extends Seeder
         User::factory()->createOne([
             'name' => 'أسامة',
             'email' => 'osahady@gmail.com',
+            'phone' => '+90 538 364 82 18'
         ]);
         User::factory()->createOne([
             'name' => 'عبادة',

@@ -16,24 +16,23 @@ class UsersSeeder extends Seeder
     {
         User::factory()->createOne([
             'name' => 'أسامة',
-            'email' => 'osahady@gmail.com',
-            'phone' => '+90 538 364 82 18'
+            'phone' => '+905383648218'
         ]);
         User::factory()->createOne([
             'name' => 'عبادة',
-            'email' => 'abukarmo194@gmail.com',
+            'phone' => '+352681526427'
         ]);
         User::factory()->createOne([
             'name' => 'أحمد',
-            'email' => 'ahmad@gmail.com',
+            'phone' => '+905383648211'
         ]);
         User::factory()->createOne([
             'name' => 'سالم',
-            'email' => 'salem@gmail.com',
+            'phone' => '+905383648212'
         ]);
         User::factory()->createOne([
             'name' => 'كريم',
-            'email' => 'kareem@gmail.com',
+            'phone' => '+352681537449'
         ]);
     }
 }

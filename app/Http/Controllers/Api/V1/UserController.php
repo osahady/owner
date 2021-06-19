@@ -26,15 +26,17 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
+        $phoneRegex = require_once __DIR__ . '../../../../../Constants/phone_regex.php';
         $fields = $request->validate([
-            'email' => ['required', 'email', 'string'],
+            'phone' => ['required', 'regex:/' . $phoneRegex . '/u'],
+            // 'email' => ['required', 'email', 'string'],
             'password' => ['required', 'string', new Password]
         ]);
 
-        $user = User::where('email', $fields['email'])->first();
+        $user = User::where('phone', $fields['phone'])->first();
         $password = $fields['password'];
         //check user
-        if(!$user){
+        if (!$user) {
             return response([
                 'message' => 'invalid data was given',
                 'errors' => [
@@ -43,7 +45,7 @@ class UserController extends Controller
             ], 422);
         }
         //check password
-        if(!Hash::check($password, $user->password)){
+        if (!Hash::check($password, $user->password)) {
             return response([
                 'message' => 'invalid data was given',
                 'errors' => [
@@ -68,5 +70,23 @@ class UserController extends Controller
         return response($response, 201);
     }
 
-
+    public function codes()
+    {
+        $codes = require_once __DIR__ . '../../../../../Constants/codes.php';
+        $prefixes = [];
+        $regex = '';
+        for ($i = 0; $i < count($codes); $i++) {
+            $regex .= '(^\\' . $codes[$i]['dial_code'] . '(';
+            $prefixes = $codes[$i]['prefix'];
+            for ($j = 0; $j < count($prefixes); $j++) {
+                $regex .= $prefixes[$j] . '|';
+            }
+            // $regex = substr($regex, 0, -1); //remove last char `|`
+            $regex = rtrim($regex, '|');
+            $regex .= ')';
+            $regex .= '\\d{' . $codes[$i]['remain_digits'] . '}$)|';
+        }
+        $regex = rtrim($regex, '|');
+        return $regex;
+    }
 }

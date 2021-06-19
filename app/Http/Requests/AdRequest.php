@@ -29,6 +29,7 @@ class AdRequest extends FormRequest
             'price' => 'required|numeric',
             'category_id' => 'required',
             'location_id' => 'required',
+            'media.*' => 'mimetypes:video/*,image/*,audio/*|max:20480'
         ];
     }
 }

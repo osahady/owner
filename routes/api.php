@@ -23,13 +23,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('v1')->name('api.v1')->group(function (){
+
+Route::prefix('v1')->name('api.v1')->group(function () {
     /*
     |--------------------------------------------------------------------------
     | Registering User - CRUD Operations
     |--------------------------------------------------------------------------
     |
     */
+    Route::get('/codes', [UserController::class, 'codes']);
+
     //public routes
     Route::post('/register', [UserController::class, 'register']);
     Route::post('/login', [UserController::class, 'login']);
@@ -44,7 +47,7 @@ Route::prefix('v1')->name('api.v1')->group(function (){
     |--------------------------------------------------------------------------
     |
     */
-        //public routes
+    //public routes
     Route::get('/ads',  [AdController::class, 'index']);
     Route::get('/cats/{cat}/ads',  [AdController::class, 'catAds']);
     Route::get('/cats/{cat}/users/{user}/ads',  [CategoryController::class, 'hisAds']);
@@ -53,17 +56,10 @@ Route::prefix('v1')->name('api.v1')->group(function (){
     Route::get('/cats',  [CategoryController::class, 'cats']);
     Route::get('/locs',  [LocationController::class, 'locs']);
 
-        
+
     //protected routes
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/ads', [AdController::class, 'store']);
         Route::post('/upload/ads/{ad}', [MediaController::class, 'upload']);
-     
     });
-
-
-
-
-
 });//end of prefix v1
-

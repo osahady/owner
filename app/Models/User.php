@@ -35,7 +35,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'phone',
-        'email',
+        // 'email',
         'password',
 
     ];
@@ -58,7 +58,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        // 'email_verified_at' => 'datetime',
+        'phone_verified_at' => 'datetime',
         'auth_state' => AuthState::class,
         'business_state' => BusinessState::class,
     ];

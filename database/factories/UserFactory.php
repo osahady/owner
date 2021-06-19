@@ -27,9 +27,9 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'phone' => $this->faker->unique()->phoneNumber,
-            'email' => $this->faker->unique()->safeEmail(),
-            'phone_verified_at' => $this->faker->dateTimeBetween('-3 months'),
-            'email_verified_at' => $this->faker->dateTimeBetween('-3 months'),
+            'phone_verified_at' => $this->faker->dateTimeBetween('now', '2 days'),
+            // 'email' => $this->faker->unique()->safeEmail(),
+            // 'email_verified_at' => $this->faker->dateTimeBetween('-3 months'),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
         ];

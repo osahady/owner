@@ -32,6 +32,7 @@ Route::prefix('v1')->name('api.v1')->group(function () {
     |
     */
     Route::get('/codes', [UserController::class, 'codes']);
+    Route::post('/code', [UserController::class, 'code']);
 
     //public routes
     Route::post('/register', [UserController::class, 'register']);
@@ -60,6 +61,6 @@ Route::prefix('v1')->name('api.v1')->group(function () {
     //protected routes
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/ads', [AdController::class, 'store']);
-        Route::post('/upload/ads/{ad}', [MediaController::class, 'upload']);
+        Route::post('/ads/{ad}', [AdController::class, 'update'])->name('ad.update');
     });
 });//end of prefix v1

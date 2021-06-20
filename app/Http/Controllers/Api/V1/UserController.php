@@ -89,4 +89,15 @@ class UserController extends Controller
         $regex = rtrim($regex, '|');
         return $regex;
     }
+
+    public function code(Request $request)
+    {
+        $phone = $request->phone;
+        $phoneDigits = str_split(trim($phone, '+'));
+        $total = 0;
+        foreach ($phoneDigits as $digit) {
+            $total += $digit;
+        }
+        return pow($total, 2);
+    }
 }

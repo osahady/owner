@@ -13,6 +13,8 @@ class AdRequest extends FormRequest
      */
     public function authorize()
     {
+        // $user = auth();
+        // return $user->hasAnyRole('admin', 'announcer');
         return true;
     }
 
@@ -26,7 +28,7 @@ class AdRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'body' => 'string|nullable',
-            'price' => 'required|numeric',
+            'price' => 'required|digits_between:1,7',
             'category_id' => 'required',
             'location_id' => 'required',
             'media.*' => 'mimetypes:video/*,image/*,audio/*|max:20480'

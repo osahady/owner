@@ -2,26 +2,23 @@
 
 namespace App\Actions\Ad;
 
+use App\Events\AdCreated;
 use App\Http\Requests\AdRequest;
 
 class CreateNewAd
 {
     public function create(AdRequest $request)
     {
-        $fields = $request->validated();
+        $request->validated();
         $user = $request->user();
         $ad = $user->ads()->create(
-            // [
-            //     'title' => $fields['title'],
-            //     'body' => $fields['body'],
-            //     'price' => $fields['price'],
-            //     'category_id' => $fields['category_id'],
-            //     'location_id' => $fields['location_id'],
-            // ]
             $request->all()
         );
         $upload = new UploadFile();
         $res =  $upload->upload($request, $ad);
+
+        // event(new AdCreated($ad));
+        AdCreated::dispatch($ad);
 
         return [
             'message' => 'Ad Was Created Successfully!',

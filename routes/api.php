@@ -60,7 +60,8 @@ Route::prefix('v1')->name('api.v1')->group(function () {
 
     //protected routes
     Route::middleware(['auth:sanctum'])->group(function () {
-        Route::post('/ads', [AdController::class, 'store']);
+        Route::post('/ads', [AdController::class, 'store'])
+            ->middleware('limit');
         Route::post('/ads/{ad}', [AdController::class, 'update'])->name('ad.update');
     });
 });//end of prefix v1

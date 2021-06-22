@@ -35,7 +35,7 @@ class SendEmailJob implements ShouldQueue
     {
         $details = [
             'title' => 'حياك الله',
-            'body' => 'يرجى الاطلاع على الإعلان "' . $this->ad->title . '" ولك الشكر!',
+            'body' => 'يرجى الاطلاع على الإعلان ' . $this->ad->title . ' ولك الشكر!',
         ];
         Mail::to('osahady@gmail.com')
             ->cc('seeosahady@gmail.com')

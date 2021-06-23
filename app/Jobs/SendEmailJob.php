@@ -39,6 +39,6 @@ class SendEmailJob implements ShouldQueue
         ];
         Mail::to('osahady@gmail.com')
             ->cc('seeosahady@gmail.com')
-            ->send(new Gmail($details));
+            ->send(new Gmail($details, $this->ad));
     }
 }

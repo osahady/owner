@@ -3,10 +3,9 @@
 
     {{ $details['body'] }}
 
-    @component('mail::button', ['url' => ''])
-        Button Text
-    @endcomponent
+    {{ $ad->body }}
 
-    Thanks,<br>
+
+    Thanks,
     {{ config('app.name') }}
 @endcomponent

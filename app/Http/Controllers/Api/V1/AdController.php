@@ -55,4 +55,13 @@ class AdController extends Controller
             'message' => 'ad updated successfully'
         ];
     }
+
+    public function delete(Ad $ad)
+    {
+        $this->authorize('delete', $ad);
+        $ad->delete();
+        return [
+            'message' => 'Deleted successfully'
+        ];
+    }
 }

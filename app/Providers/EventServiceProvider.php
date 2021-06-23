@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Ad;
+use App\Observers\AdObserver;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -30,6 +32,6 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Ad::observe(AdObserver::class);
     }
 }

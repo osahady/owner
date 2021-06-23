@@ -20,6 +20,7 @@ class CreateMediaTable extends Migration
             $table->string('url');
             $table->morphs('mediable'); //id and type
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('ad_id')->references('id')->on('ads')->onDelete('cascade');
         });

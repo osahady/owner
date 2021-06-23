@@ -63,5 +63,6 @@ Route::prefix('v1')->name('api.v1')->group(function () {
         Route::post('/ads', [AdController::class, 'store'])
             ->middleware('limit');
         Route::post('/ads/{ad}', [AdController::class, 'update'])->name('ad.update');
+        Route::delete('/ads/{ad}', [AdController::class, 'delete']);
     });
 });//end of prefix v1

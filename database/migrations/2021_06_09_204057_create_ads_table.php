@@ -22,6 +22,7 @@ class CreateAdsTable extends Migration
             $table->text('body')->nullable();
             $table->double('price');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');

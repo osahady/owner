@@ -65,7 +65,8 @@ class AdPolicy
      */
     public function delete(User $user, Ad $ad)
     {
-        //
+        //لا يحذف الإعلان إلا صاحبه
+        return $user->id === $ad->user_id;
     }
 
     /**

@@ -10,12 +10,13 @@ use App\Http\Resources\LocationResource;
 
 class LocationController extends Controller
 {
-    public function locAds(Location $loc)
+    public function locAds(Request $request, Location $loc)
     {
         return AdResource::collection(
             $loc->ads()
-            ->with(['user', 'location', 'category'])
-            ->get()
+                ->with(['user', 'location', 'category'])
+                ->limited($request)
+                ->get()
         );
     }
 

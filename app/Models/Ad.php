@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Http\Request;
 
 class Ad extends Model
 {
@@ -66,5 +67,19 @@ class Ad extends Model
     public function media(): HasMany
     {
         return $this->hasMany(Media::class);
+    }
+
+    /**
+     * Scope a query to limit number of fetched ads.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  Illuminate\Http\Request  $request
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeLimited($query, Request $request)
+    {
+        $s = $request->start  ?? 0;
+        $l = $request->length ?? 20;
+        return $query->skip($s)->take($l);
     }
 }

@@ -12,24 +12,26 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function hisAds(Category $cat, User $user)
+    public function hisAds(Request $request, Category $cat, User $user)
     {
-       return AdResource::collection(
-           $user->ads()
-           ->where('category_id', $cat->id)
-           ->with(['user', 'location', 'category'])
-           ->get()
-       );
+        return AdResource::collection(
+            $user->ads()
+                ->where('category_id', $cat->id)
+                ->with(['user', 'location', 'category'])
+                ->limited($request)
+                ->get()
+        );
     }
 
-    public function catLocAds(Category $cat, Location $loc)
+    public function catLocAds(Request $request, Category $cat, Location $loc)
     {
-       return AdResource::collection(
-           $cat->ads()
-           ->where('location_id', $loc->id)
-           ->with(['user', 'location', 'category'])
-           ->get()
-       );
+        return AdResource::collection(
+            $cat->ads()
+                ->where('location_id', $loc->id)
+                ->with(['user', 'location', 'category'])
+                ->limited($request)
+                ->get()
+        );
     }
 
     public function cats()
